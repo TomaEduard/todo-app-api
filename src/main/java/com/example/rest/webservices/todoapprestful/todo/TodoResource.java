@@ -56,13 +56,11 @@ public class TodoResource {
 	public ResponseEntity<Void> updateTodo(@PathVariable String username, @RequestBody Todo todo) {
 		
 		Todo createdTodo = todoService.saveAndUpdate(todo);
-		
-		// Location
+
 		// Get current path and save to local variable uri
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
 				// add /id to current path
 			.path("/id").buildAndExpand(createdTodo.getId()).toUri();
-		
 		
 		return ResponseEntity.created(uri).build();
 	}
